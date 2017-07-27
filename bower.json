@@ -1,0 +1,27 @@
+{
+  "name": "scms",
+  "description": "It's a simple CMS system",
+  "main": "bin/www",
+  "authors": [
+    "andy"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "cms",
+    "express",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/byk04712/scms",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.5",
+    "bootstrap": "^3.3.7",
+    "moment": "^2.18.1"
+  }
+}

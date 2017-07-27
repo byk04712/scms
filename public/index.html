@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>News</title>
+	<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-app="webapp">
+	<div class="container" ng-controller="NewsController">
+		<h2>News</h2>
+		<div class="row" ng-repeat="news in list">
+			<div class="col-sm-2">
+				<small ng-bind="formatDate(news.createTime)"></small>
+			</div>
+			<div class="col-sm-3">{{news.title}}</div>
+			<div class="col-sm-7">{{news.content}}</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/moment/moment.js"></script>
+	<script type="text/javascript" src="js/moment.config.js"></script>
+	<script type="text/javascript" src="webapp.js"></script>
+	<script type="text/javascript" src="services/news.client.service.js"></script>
+	<script type="text/javascript" src="controllers/news.client.controller.js"></script>
+</body>
+</html>
