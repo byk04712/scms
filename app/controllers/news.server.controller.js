@@ -32,15 +32,14 @@ module.exports = {
 		if (!id) {
 			return next(new Error('News not found'));
 		}
-
 		News
 			.findOne({ _id: id })
-			.exec(function(err, req, doc) {
+			.exec(function(err, doc) {
 				if (err) {
 					return next(err);
 				}
 				if (!doc) {
-					return next(new Error('News not found'));
+					return next(new Error('News not found!'));
 				}
 
 				req.news = doc;

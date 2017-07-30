@@ -3,7 +3,8 @@ angular.module('webapp')
 
 function NewsService($http, $q) {
 
-	function handleRequest(method = 'GET', url, data) {
+	function handleRequest(method = 'GET', url, data = {}) {
+console.log(method, url, data);
 
 		// 创建一个deferred对象
 		var defered = $q.defer();
