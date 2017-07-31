@@ -3,20 +3,33 @@ var News = require('../models/news.server.model');
 
 
 module.exports = {
-	create: function(req, res, next) {
-		var news = new News(req.body);
+	save: function(req, res, next) {
+		var id = req.body._id;
 
-		news.save(function(err) {
-			if (err) {
-				return next(err);
-			}
-			return res.json(news);
-		})
+		if (id) {	// 修改
+			News.
+				updateOne({_id: id}, {
+					$set: req.body
+				}, function(err, raw) {
+					if (err) {
+						return next(err);
+					}
+					return res.json(raw);
+				});
+		} else {	// 新增
+			var news = new News(req.body);
+			news.save(function(err) {
+				if (err) {
+					return next(err);
+				}
+				return res.json(news);
+			});
+		}
 	},
 	list: function(req, res, next) {
 		var pageSize = parseInt(req.query.pagesize, 10) || 10;
-		var pageStart = parseInt(req.query.pageStart, 10) || 1;
-
+		var pageStart = parseInt(req.query.pagestart, 10) || 1;
+console.log('list result , pagestart' + pageStart + ' - pagesize = ' + pageSize);
 		News
 			.find()
 			.skip((pageStart - 1) * pageSize)
@@ -48,5 +61,12 @@ module.exports = {
 	},
 	get: function(req, res, next) {
 		return res.json(req.news);
+	},
+	remove: function(req, res, next) {
+		News
+			.deleteOne({_id: req.news._id})
+			.then(function(result) {
+				return res.json(result);
+			});
 	}
 }

@@ -37,7 +37,7 @@
 					<td>
 						<button type="button" class="btn btn-primary" ng-click="newsDetail(news._id)">查看详情</button>
 						<button type="button" class="btn btn-default" ng-click="newsEdit(news._id)">编辑</button>
-						<button type="button" class="btn btn-link" ng-click="newsRemove(news._id)">删除</button>
+						<button type="button" class="btn btn-link" ng-click="confirmRemove(news._id)">删除</button>
 					</td>
 				</tr>
 			</tbody>
@@ -46,28 +46,42 @@
 		<div class="text-center">
 			<ul class="pagination pagination-lg">
 				<li>
-					<a href="#" aria-label="上一页">
+					<a href="javascript:goPage({{pagestart-1}})" aria-label="上一页">
 						<span aria-hidden="true">&laquo;</span>
 					</a>
 				</li>
 				<li>
-					<a href="#">1</a>
+					<a href="javascript:void()" ng-click="goPage(1)">1</a>
 				</li>
 				<li>
-					<a href="#">2</a>
+					<a href="javascript:goPage(2)">2</a>
 				</li>
 				<li>
-					<a href="#">3</a>
+					<a href="javascript:goPage(3)">3</a>
 				</li>
 				<li>
-					<a href="#">4</a>
+					<a href="javascript:goPage(4)">4</a>
 				</li>
 				<li>
-					<a href="#" aria-label="下一页">
+					<a href="javascript:goPage({{pagestart+1}})" aria-label="下一页">
 						<span aria-hidden="true">&raquo;</span>
 					</a>
 				</li>
 			</ul>
+		</div>
+
+		<div id="modal-confirm" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>确定要删除新闻 “<b ng-bind="news.title"></b>” 吗？</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" ng-click="sureRemove(news._id)">确定</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div id="modal-detail" class="modal fade" tabindex="-1" role="dialog">
@@ -98,6 +112,7 @@
 					</div>
 					<div class="modal-body">
 						<form id="editor-form" class="form-horizontal">
+							<input type="hidden" ng-model="new._id">
 							<div class="form-group {{new.titleInvalid}}">
 								<label class="col-sm-2 control-label" for="news-title">
 									<span class="text-danger">*</span>

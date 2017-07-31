@@ -1,5 +1,5 @@
 .tip-top{
-    position: absolute;
+    position: fixed;
     opacity: 0;
     right: 0px;
     width: 30%;

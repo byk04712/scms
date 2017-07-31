@@ -4,8 +4,6 @@ angular.module('webapp')
 function NewsService($http, $q) {
 
 	function handleRequest(method = 'GET', url, data = {}) {
-console.log(method, url, data);
-
 		// 创建一个deferred对象
 		var defered = $q.defer();
 		
@@ -27,11 +25,9 @@ console.log(method, url, data);
 
 		$http(config).then(
 			function(response) {
-				console.log('http request success', response);
 				defered.resolve(response);
 			},
 			function(error) {
-				console.error('http request failed ', error);
 				defered.reject(error);
 			}
 		);
@@ -48,6 +44,9 @@ console.log(method, url, data);
 		},
 		detail: function(id) {
 			return handleRequest('GET', `/news/${id}`);
+		},
+		delete: function(id) {
+			return handleRequest('GET', `/news/remove/${id}`);
 		}
 	};
 }
