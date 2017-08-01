@@ -7,7 +7,7 @@ function NewsController($scope, NewsService) {
 	$scope.news = {};
 	$scope.new = {};
 	$scope.pagestart = 1;
-	$scope.pagesize = 5;
+	$scope.pagesize = 15;
 
 	// 新增新闻按钮点击
 	$scope.addNews = function() {

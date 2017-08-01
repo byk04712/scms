@@ -29,7 +29,6 @@ module.exports = {
 	list: function(req, res, next) {
 		var pageSize = parseInt(req.query.pagesize, 10) || 10;
 		var pageStart = parseInt(req.query.pagestart, 10) || 1;
-console.log('list result , pagestart' + pageStart + ' - pagesize = ' + pageSize);
 		News
 			.find()
 			.skip((pageStart - 1) * pageSize)
